@@ -7,10 +7,37 @@
 }
 
 VBox{
-    -fx-background-color:aquamarine;
+    -fx-background-color:#cccccc;
     -fx-padding:10;
     -fx-spacing:10;
+    -fx-alignment:CENTER;
 }
+
+HBox{
+    -fx-alignment:CENTER;
+}
+
+TextField.txtInFo{
+    -fx-pref-height: 30;
+}
+
+Text.Subject{
+    -fx-font-size:26;
+    -fx-fill:#0066cc;
+}
+
+ComboBox{
+    -fx-pref-height: 30;
+    -fx-pref-width: 500;
+}
+
+Button{
+    -fx-background-color:#00cccc;
+    -fx-text-fill:white;
+    -fx-pref-height: 30;
+    -fx-pref-width: 70;
+}
+
 .mainFxmlClass {
 
 }

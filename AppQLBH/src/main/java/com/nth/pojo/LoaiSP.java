@@ -22,6 +22,11 @@ public class LoaiSP {
         this.moTa = moTa;
     }
 
+    @Override
+    public String toString() {
+        return this.tenLoaiSP;
+    }
+    
     public int getId() {
         return id;
     }
