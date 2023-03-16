@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="388.0" prefWidth="600.0" stylesheets="@../../../styles/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nth.appqlbh.FXQLSanPhamController">
    <children>
       <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Subject" text="QUẢN LÝ SẢN PHẨM" />
@@ -32,15 +31,15 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txtLabel" text="Tên sản phẩm" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txtLabel" text="Loại sản phẩm" GridPane.rowIndex="2" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txtLabel" text="Giá bán" GridPane.rowIndex="3" />
-            <TextField styleClass="txtInFo" GridPane.columnIndex="1" />
-            <TextField styleClass="txtInFo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField prefWidth="483.0" styleClass="txtInFo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="txtMaSP" styleClass="txtInFo" GridPane.columnIndex="1" />
+            <TextField fx:id="txtTenSP" styleClass="txtInFo" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtGiaBanSP" prefWidth="483.0" styleClass="txtInFo" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <ComboBox fx:id="cbLoaiSP" prefWidth="150.0" promptText="Chọn loại sản phẩm" styleClass="txtInFo" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <HBox prefHeight="11.0" prefWidth="580.0" styleClass="btAdd">
          <children>
-            <Button mnemonicParsing="false" text="Thêm" />
+            <Button mnemonicParsing="false" onAction="#themSanPham" text="Thêm" />
          </children>
       </HBox>
       <TableView prefHeight="222.0" prefWidth="600.0">
