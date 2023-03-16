@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -39,14 +38,10 @@
       </GridPane>
       <HBox prefHeight="11.0" prefWidth="580.0" styleClass="btAdd">
          <children>
-            <Button mnemonicParsing="false" onAction="#themSanPham" text="Thêm" />
+            <Button fx:id="btThemSP" mnemonicParsing="false" onAction="#themSanPham" text="Thêm" />
          </children>
       </HBox>
-      <TableView prefHeight="222.0" prefWidth="600.0">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
-      </TableView>
+      <TextField fx:id="txtSearch" promptText="Nhập từ khóa cần tìm" />
+      <TableView fx:id="tbView" prefHeight="222.0" prefWidth="600.0" />
    </children>
 </VBox>

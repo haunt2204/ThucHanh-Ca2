@@ -6,4 +6,5 @@ module com.nth.appqlbh {
 
     opens com.nth.appqlbh to javafx.fxml;
     exports com.nth.appqlbh;
+    exports com.nth.pojo;
 }

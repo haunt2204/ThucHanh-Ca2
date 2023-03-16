@@ -19,8 +19,12 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
@@ -32,6 +36,9 @@ public class FXQLSanPhamController implements Initializable {
     @FXML TextField txtMaSP;
     @FXML TextField txtTenSP;
     @FXML TextField txtGiaBanSP;
+//    @FXML Button btThemSP;
+    @FXML TableView<SanPham> tbView;
+    @FXML TextField txtSearch;
     /**
      * Initializes the controller class.
      */
@@ -39,12 +46,22 @@ public class FXQLSanPhamController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         txtMaSP.setDisable(true);
         txtMaSP.setText(UUID.randomUUID().toString());
+        setFormatTableView();
         CategoryService c = new CategoryService();
         try {
             cbLoaiSP.setItems(FXCollections.observableArrayList(c.getLoaiSP()));
+            setDataTableView(null);
         } catch (SQLException ex) {
             Logger.getLogger(FXQLSanPhamController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        txtSearch.textProperty().addListener((evt)->{
+            try {
+                setDataTableView(txtSearch.getText());
+            } catch (SQLException ex) {
+                Logger.getLogger(FXQLSanPhamController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+//        btThemSP.setOnAction((evt)->{txtMaSP.setText(UUID.randomUUID().toString());});
     }    
     
     public void themSanPham(){
@@ -56,5 +73,22 @@ public class FXQLSanPhamController implements Initializable {
         } catch (SQLException ex) {
             Utils.getBox("Thêm sản phẩm thất bại!", Alert.AlertType.ERROR).show();
         }
+    }
+    
+    public void setFormatTableView(){
+//        this.tbView.getColumns().clear();//Cẩn thận
+        TableColumn colTenSanPham = new TableColumn("Tên sản phẩm");
+        colTenSanPham.setCellValueFactory(new PropertyValueFactory("tenSP"));
+        colTenSanPham.setPrefWidth(400);
+        
+        TableColumn colLoaiSP = new TableColumn("Loại sản phẩm");
+        colLoaiSP.setCellValueFactory(new PropertyValueFactory("loaiSP"));
+        colLoaiSP.setPrefWidth(200);
+        tbView.getColumns().addAll(colTenSanPham,colLoaiSP);
+    }
+    
+    public void setDataTableView(String kw) throws SQLException{
+        ProductService p = new ProductService();
+        tbView.setItems(FXCollections.observableArrayList(p.getDSSanPham(kw)));
     }
 }

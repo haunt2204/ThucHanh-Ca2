@@ -8,7 +8,10 @@ import com.nth.conf.jdbcUtils;
 import com.nth.pojo.SanPham;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -33,5 +36,25 @@ public class ProductService {
         }
         
         return false;
+    }
+    
+    public List<SanPham> getDSSanPham(String kw) throws SQLException{
+        List<SanPham> results = new ArrayList<>();
+        try(Connection conn = jdbcUtils.getConn()){
+            String sql = "SELECT * FROM SanPham";
+            if(kw!=null&&!kw.isEmpty()){
+                sql+=" WHERE TenSP like concat('%',?,'%')";
+            }
+            PreparedStatement stm = conn.prepareCall(sql);
+            if(kw!=null&&!kw.isEmpty()){
+                stm.setString(1, kw);
+            }
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                SanPham sp = new SanPham(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getFloat(4));
+                results.add(sp);
+            }
+        }
+        return results;
     }
 }
