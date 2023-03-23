@@ -36,7 +36,7 @@ public class FXQLSanPhamController implements Initializable {
     @FXML TextField txtMaSP;
     @FXML TextField txtTenSP;
     @FXML TextField txtGiaBanSP;
-//    @FXML Button btThemSP;
+    @FXML Button btThemSP;
     @FXML TableView<SanPham> tbView;
     @FXML TextField txtSearch;
     /**
@@ -61,7 +61,10 @@ public class FXQLSanPhamController implements Initializable {
                 Logger.getLogger(FXQLSanPhamController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-//        btThemSP.setOnAction((evt)->{txtMaSP.setText(UUID.randomUUID().toString());});
+        btThemSP.setOnAction((evt)->{
+            themSanPham();
+            txtMaSP.setText(UUID.randomUUID().toString());
+        });
     }    
     
     public void themSanPham(){
